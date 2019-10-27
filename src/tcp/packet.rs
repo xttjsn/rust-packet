@@ -25,7 +25,7 @@ use crate::tcp::option;
 
 /// TCP packet parser.
 pub struct Packet<B> {
-	buffer: B,
+	pub buffer: B,
 }
 
 sized!(Packet,
