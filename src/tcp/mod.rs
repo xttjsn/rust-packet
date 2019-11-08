@@ -86,5 +86,15 @@ pub fn checksum<B: AsRef<[u8]>>(ip: &ip::Packet<B>, buffer: &[u8]) -> u16 {
 		}
 	}
 
+	if let Ok(value) = buffer.read_u8() {
+		let value = (value as u16).to_be();
+
+		result += u32::from(value);
+
+		if result > 0xffff {
+			result -= 0xffff;
+		}
+	}
+
 	!result as u16
 }
